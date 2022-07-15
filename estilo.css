@@ -66,9 +66,48 @@ animation-iteration-count: infinite;
     align-items: center;
     margin-top: 20%;
 }
-.image_main img{
+.image_main .hand{
     max-width: 80vw;
     animation-name: float;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+.hearth{
+    position: absolute;
+    right: 8%;
+    top: 7%;
+    width: 80px;
+    animation-name: float-top;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+.profile{
+    position: absolute;
+    left: 42%;
+    top: 9%;
+    transform: rotate(344deg);
+    width: 50px;
+    animation-name: float-top2;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+.hearth_msg{
+    position: absolute;
+    left: 65%;
+    top: 39%;
+    transform: rotate(344deg);
+    width: 50px;
+    animation-name: float-top3;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+.comment_msg{
+    position: absolute;
+    left: 39%;
+    top: 37%;
+    transform: rotate(15deg);
+    width: 50px;
+    animation-name: float-top4;
     animation-duration: 10s;
     animation-iteration-count: infinite;
 }
@@ -131,6 +170,50 @@ h1{
     }
     100%  {
         transform: rotate(5deg);
+    }
+}
+@keyframes float-top {
+    0%   {
+        top:4%
+        }
+    50%  {
+        top: 6%;
+    }
+    100%  {
+        top:4%
+    }
+}
+@keyframes float-top2 {
+    0%   {
+         top: 9%;
+        }
+    50%  {
+        top: 8%;
+    }
+    100%  {
+        top:9%;
+    }
+}
+@keyframes float-top3 {
+    0%   {
+        top: 38%;
+        }
+    50%  {
+        top: 40%;
+    }
+    100%  {
+        top: 38%;
+    }
+}
+@keyframes float-top4 {
+    0%   {
+        top: 37%;
+        }
+    50%  {
+        top: 40%;
+    }
+    100%  {
+        top: 37%;
     }
 }
 @keyframes shape_float {
