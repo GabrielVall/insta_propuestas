@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    --red: 50;
+    --blue: 250;
+    --main-color: rgb(var(--red) 209 var(--blue));
+    --degree_main: rgb(var(--red) 209 var(--blue)) 29%;
+    --degree_secondary: rgb(var(--red) 211 var(--blue));
+    --circle_degree_1: rgb(var(--red) 245 var(--blue)) 29%;
+    --circle_degree_2: rgb(var(--red) 222 var(--blue)) 80%;
+    --circle_degree_3: rgb(var(--red) 228 var(--blue)) 29%;
+    --circle_degree_4: rgb(var(--red) 247 var(--blue)) 80%;
+    font-family: 'Rubik', sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: nowrap;
+    height: 100%;
+}
+.card{
+    position: relative;
+    background: linear-gradient(184deg, var(--degree_main), var(--degree_secondary) 80%);
+    height: 100vh;
+    width: 100vw;
+}
+.figure_1{
+    width: 500px;
+height: 500px;
+position: absolute;
+border-radius: 50%;
+left: -50%;
+top: -5%;
+background: var(--circle_degree_1);
+background: linear-gradient(184deg, var(--circle_degree_1),var(--circle_degree_2));
+animation-name: figure;
+animation-duration: 6s;
+animation-iteration-count: infinite;
+}
+.figure_2{
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    border-radius: 50%;
+    right: -52%;
+    bottom: 20%;
+    background: var(--circle_degree_4);
+    background: linear-gradient(184deg, var(--circle_degree_3), var(--circle_degree_4));
+    animation-name: figure;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+.full_w{
+    max-width: 100%;
+}
+.image_main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+}
+.image_main img{
+    max-width: 80vw;
+    animation-name: float;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+.content_card{
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+}
+.bottom_card{
+    backdrop-filter: blur(5px);
+    background-color: #ffffffd4;
+    padding: 5%;
+    position: absolute;
+    bottom: 0;
+    height: 40vh;
+}
+h1{
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #505050;
+    text-align: center;
+}
+.shape{
+    width: 60px;
+    height: 5px;
+    background-color: #ff9f89;
+    position: absolute;
+    left: 26%;
+    top: 12%;
+    border-radius: 10% 100% 100% 10% / 100% 100% 100% 100%;
+    transform: rotate(41deg);
+    animation-name: shape_float;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+@keyframes figure {
+    0%   {
+        border-radius: 48% 52% 48% 52% / 51% 57% 43% 49%;
+        }
+        25%{
+            border-radius: 48% 52% 48% 52% / 77% 36% 64% 23% ;
+        }
+    50%  {
+        border-radius: 31% 69% 21% 79% / 77% 19% 81% 23% ;
+    }
+    75%{
+        border-radius: 14% 86% 0% 100% / 94% 35% 65% 6% ;
+    }
+    100%  {
+        border-radius:  48% 52% 48% 52% / 51% 57% 43% 49%;
+    }
+}
+
+@keyframes float {
+    0%   {
+        transform: rotate(5deg);
+        }
+    50%  {
+        transform: rotate(15deg);
+    }
+    100%  {
+        transform: rotate(5deg);
+    }
+}
+@keyframes shape_float {
+    0%   {
+        top: 12%;
+        left: 26%;
+        }
+        25%{
+            top: 14%;
+            left: 28%;
+        }
+    100%  {
+        top: 12%;
+        left: 26%;
+    }
+}
+.form button {
+    border: none;
+    background: none;
+    color: #8b8ba7;
+  }
+  /* styling of whole input container */
+  .form {
+    --timing: 0.3s;
+    --width-of-input: 90%;
+    --height-of-input: 50px;
+    --border-height: 2px;
+    --input-bg: #fff;
+    --border-color: var(--main-color);
+    --border-radius: 30px;
+    --after-border-radius: 1px;
+    position: relative;
+    width: var(--width-of-input);
+    height: var(--height-of-input);
+    display: flex;
+    align-items: center;
+    padding-inline: 0.8em;
+    border-radius: var(--border-radius);
+    transition: border-radius 0.5s ease;
+    background: var(--input-bg,#fff);
+  }
+  /* styling of Input */
+  .input {
+    font-size: 1.1rem;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    text-align: center;
+  }
+  /* styling of animated border */
+  .form:before {
+    content: "";
+    position: absolute;
+    background: var(--border-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: var(--border-height);
+    left: 0;
+    bottom: 0;
+    border-radius: 1px;
+    transition: transform var(--timing) ease;
+  }
+  /* Hover on Input */
+  .form:focus-within {
+    border-radius: var(--after-border-radius);
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  /* here is code of animated border */
+  .form:focus-within:before {
+    transform: scale(1);
+  }
+  /* styling of close button */
+  /* == you can click the close button to remove text == */
+  .reset {
+    border: none;
+    background: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  /* close button shown when typing */
+  input:not(:placeholder-shown) ~ .reset {
+    opacity: 1;
+    visibility: visible;
+  }
+  /* sizing svg icons */
+  .form svg {
+    width: 24px;
+    margin-top: 3px;
+  }
+  .form_content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+  }
+  .progress_circular{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #ffffffad;
+    border: 10px solid #efefef;
+  }
+  .button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+  }
+  .btn_next{
+    background: var(--circle_degree_1);
+    background: linear-gradient(184deg, var(--circle_degree_1),var(--circle_degree_2));
+    padding: 3% 15% 3% 15%;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 1.7em;
+    color: black;
+    text-transform: uppercase;
+    text-shadow: rgb(255 255 255) 1px 0px;
+    letter-spacing: 1px;
+  }
