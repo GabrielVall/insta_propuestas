@@ -74,9 +74,9 @@ animation-iteration-count: infinite;
 }
 .hearth{
     position: absolute;
-    right: 8%;
-    top: 7%;
-    width: 80px;
+    right: 12%;
+    top: 10%;
+    width: 50px;
     animation-name: float-top;
     animation-duration: 10s;
     animation-iteration-count: infinite;
@@ -174,13 +174,13 @@ h1{
 }
 @keyframes float-top {
     0%   {
-        top:4%
+        top: 10%;
         }
     50%  {
-        top: 6%;
+        top: 8%;
     }
     100%  {
-        top:4%
+        top: 10%;
     }
 }
 @keyframes float-top2 {
