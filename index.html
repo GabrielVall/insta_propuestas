@@ -33,7 +33,7 @@
                                 <button>
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                                 </button>
-                                <input class="input" placeholder="Ejemplo: 8781383809" required="" type="text">
+                                <input class="input" id="celular" placeholder="Celular 10 dígitos" required="" type="text">
                                 <button class="reset" type="reset">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
@@ -41,8 +41,19 @@
                                 </button>
                             </form>
                         </div>
+                        <div class="checkbox_content">
+                            <div class="text_chk">
+                                <div class="cntr">
+                                    <input type="checkbox" id="cbx" class="hidden-xs-up">
+                                    <label for="cbx" class="cbx"></label>
+                                </div>
+                            </div>
+                            <div class="save_phone">
+                                Guardar mi número para futuras compras.
+                            </div>
+                        </div>
                         <div class="button">
-                            <a href="javascript:void(0);" class="btn_next">Siguiente</a>                                
+                            <a href="javascript:void(0);" class="btn_next">Siguiente</a>
                         </div>
                     </div>
                 </div>
@@ -50,4 +61,5 @@
         </div>
     </div>
 </body>
+<script src="js/main.js"></script>
 </html>
