@@ -19,9 +19,9 @@ window.onload = function() {
                 success: function(data) {
                     data = JSON.parse(data);
                     if(data.status){
-                        
+                       
                     }else{
-                        alert(data.msg);
+                        alert(data.status);
                     }
                 }
             });
