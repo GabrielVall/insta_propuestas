@@ -1,5 +1,5 @@
 window.onload = function() {
-    
+    var contenedor = document.getElementsByClassName("bottom_card")[0];
     var button_next = document.getElementsByClassName('btn_next')[0];
     // on click
     button_next.onclick = function(e) {
@@ -19,7 +19,7 @@ window.onload = function() {
                 success: function(data) {
                     data = JSON.parse(data);
                     if(data.status){
-                       
+                    contenedor.classList.add('full');
                     }else{
                         alert(data.status);
                     }
