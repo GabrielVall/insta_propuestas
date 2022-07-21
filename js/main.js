@@ -112,10 +112,12 @@ $(document).ready(function() {
     });
     // on focus input
     $(document).on('focus', '#cvv', function(e) {
-        console.log('is focused');
+        $('.cerdit_card')[0].classList.add('hidden');
+        $('.cerdit_card')[1].classList.remove('hidden');
     });
     // on blur input
     $(document).on('blur', '#cvv', function(e) {
-        console.log('is blurred');
+        $('.cerdit_card')[1].classList.add('hidden');
+        $('.cerdit_card')[0].classList.remove('hidden');
     });
 });
