@@ -1,8 +1,8 @@
-window.onload = function() {
+$(document).ready(function() {
     var contenedor = document.getElementsByClassName("bottom_card")[0];
     var button_next = document.getElementsByClassName('btn_next')[0];
     // on click
-    button_next.onclick = function(e) {
+    $(document).on('click', '.btn_next', function(e) {
         var cel = document.getElementById('celular').value;
         var cbx = document.getElementById('cbx');
         button_next.innerHTML = '<div class="loader"></div>';
@@ -35,5 +35,87 @@ window.onload = function() {
             button_next.classList.remove('disabled');
             button_next.innerHTML = 'SIGUIENTE';
         }
+    });
+    
+    $(document).on('keyup', '#numero_tarjeta', function(e) {
+        var selector = $('.group_numbers');
+        var num = e.target.value.length;
+        var split_value = e.target.value.split('');
+        var group = 0;
+        e.target.value = e.target.value.substring(0, 16);
+        // for numbers increment 4 limit 16
+        $(selector).html('');
+        for (var i = 0; i < 16; i++) {
+            if (i % 4 == 0 && i != 0) {
+                group++;
+            }
+            if(split_value[i]){
+                // append
+                selector[group].innerHTML += split_value[i];;
+            }else{
+                selector[group].innerHTML += '*';
+            }
+            
+        }
+    });
+    $(document).on('keyup', '#nombre', function(e) {
+        var text = $(this).val();
+        console.log(text.length);
+        if(text.length == 0){
+            $('.name_payer')[0].innerHTML = 'Nombre del titular';
+        }else{
+            $('.name_payer')[0].innerHTML = text;
+        }
+    });
+    $(document).on('change','#mes_select', function(){
+        var val = $(this).val();
+        // if number is less than 10 add 0
+        if(val.length == 1){
+            val = '0'+val;
+        }
+        $('#mes_card').html(val);
+    });
+    $(document).on('change','#year_select', function(){
+        var val = $(this).val();
+        // if number is less than 10 add 0
+        if(val.length == 1){
+            val = '0'+val;
+        }
+        $('#year_card').html(val);
+    });
+    cargar_years_select();
+    function cargar_years_select(){
+        var year = new Date().getFullYear();
+        // last 2 numbers
+        var year_end = year.toString().substring(2, 4);
+        var option = '';
+        // for 10 years
+        for (var i = 0; i < 15; i++) {
+            option += `<option value="${year_end}">${year_end}</option>`;
+            year_end++;
+        }
+        $('#year_select').html(option);
     }
-}
+    $(document).on('keyup', '#cvv', function(e) {
+        var text = $(this).val();
+        console.log(text.length);
+        if(text.length == 0){
+            $('.cvv_payer')[0].innerHTML = 'CVV';
+        }else{
+            // if length is more than 3
+            if(text.length > 3){
+                text = text.substring(0, 3);
+            }else{
+                // $('.cvv_payer')[0].innerHTML = text;
+            }
+        }
+    });
+    // on focus input
+    $(document).on('focus', '#cvv', function(e) {
+        console.log('is focused');
+    });
+    // on blur input
+    $(document).on('blur', '#cvv', function(e) {
+        console.log('is blurred');
+    });
+});
