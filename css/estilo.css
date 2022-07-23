@@ -667,5 +667,57 @@ h1{
     display: inline-block;
     vertical-align: top;
     border-radius: 5px;
-
+}
+.backdrop_modal{
+    background-color: #181818d6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    background: #f1f1f1;
+    border-radius: 10px;
+    color: white;
+    flex-wrap: wrap;
+    position: relative;
+}
+.top_modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 2em;
+}
+.green_load{
+    --border_color: 1.1em solid rgb(193 193 193 / 97%);
+    font-size: .3em;
+    position: relative;
+    text-indent: -9999em;
+    border-top: var(--border_color);
+    border-right: var(--border_color);
+    border-bottom: var(--border_color);
+    border-left: 1.5em solid #4e4e4e;
+    -webkit-animation: load8 400ms infinite linear;
+    animation: load8 500ms infinite linear;
+    margin: 2%;
+}
+.modal_content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    color: #221f1f;
+    font-weight: bold;
+    font-size: 1.4em;
 }
