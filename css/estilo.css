@@ -564,8 +564,8 @@ h1{
 .cerdit_card{
     width: 80%;
     max-width: 500px;
-    background: rgb(34,29,121);
-    background: linear-gradient(155deg, rgba(34,29,121,1) 32%, rgba(24,24,134,1) 70%, rgba(41,22,184,1) 100%);
+    background: rgb(239,70,27);
+    background: linear-gradient(184deg, rgba(239,70,27,1) 25%, rgba(255,115,56,1) 60%, rgba(255,143,71,1) 92%);
     display: flex;
     border-radius: 10px;
     min-height: 200px;
@@ -594,14 +594,15 @@ h1{
 .card_numbers{
     width: 85%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
     padding-left: 30px;
     padding-right: 30px;
     font-family: 'Ubuntu', sans-serif;
     font-size: 1.2em;
     letter-spacing: 3px;
+    padding-top: 6px;
 }
 .credit_bottom{
     font-family: 'Ubuntu', sans-serif;

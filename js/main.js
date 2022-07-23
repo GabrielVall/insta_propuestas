@@ -88,7 +88,7 @@ $(document).ready(function() {
         var year = new Date().getFullYear();
         // last 2 numbers
         var year_end = year.toString().substring(2, 4);
-        var option = '';
+        var option = '<option disabled selected>Año</option>';
         // for 10 years
         for (var i = 0; i < 15; i++) {
             option += `<option value="${year_end}">${year_end}</option>`;
@@ -98,15 +98,15 @@ $(document).ready(function() {
     }
     $(document).on('keyup', '#cvv', function(e) {
         var text = $(this).val();
-        console.log(text.length);
         if(text.length == 0){
-            $('.cvv_payer')[0].innerHTML = 'CVV';
+            $('.cvv span')[0].innerHTML = '***';
         }else{
             // if length is more than 3
             if(text.length > 3){
                 text = text.substring(0, 3);
+                $(this).val(text);
             }else{
-                // $('.cvv_payer')[0].innerHTML = text;
+                $('.cvv span')[0].innerHTML = text;
             }
         }
     });
