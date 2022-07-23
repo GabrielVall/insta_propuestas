@@ -120,4 +120,8 @@ $(document).ready(function() {
         $('.cerdit_card')[1].classList.add('hidden');
         $('.cerdit_card')[0].classList.remove('hidden');
     });
+    $(document).on('click', '.square', function(e) {
+        $('.square').removeClass('selected');
+        $(this).addClass('selected');
+    });
 });

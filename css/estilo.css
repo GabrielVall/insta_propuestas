@@ -538,9 +538,15 @@ h1{
     text-align: center;
     border-radius: 10px;
     font-weight: bold;
+    -webkit-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
 }
 .square.selected{
     background-color: #eb7143;
+    -webkit-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
 }
 .icon svg{
     width: 25px;
