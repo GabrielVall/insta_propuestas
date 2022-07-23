@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $(document).on('click', '#back_button', function() {
-        window.location.href = 'instacel.mx';
+        window.location.href = 'https://instacel.mx/';
     });
     var contenedor = document.getElementsByClassName("bottom_card")[0];
     var button_next = document.getElementsByClassName('btn_next')[0];
