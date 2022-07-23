@@ -123,6 +123,19 @@ $(document).ready(function() {
         $('.square').removeClass('selected');
         $(this).addClass('selected');
     });
+    // OPEN PAY
+    OpenPay.setSandboxMode(true);
+    OpenPay.setId('msrmt2amtq1l2fw1yp9z');
+    OpenPay.setApiKey('pk_3a2472a9794f4b1e828e0cde7bffb4ba');
+    var form = OpenPay.token.extractFormInfo('form_card', success_callbak, error_callbak);
+    var success_callbak = function(response) {
+      var token_id = response.data.id;
+      console.log(token_id);
+    };
+    var error_callbak = function(response) {
+      var desc = response.data.description != undefined ? response.data.description : response.message;
+      alert("ERROR [" + response.status + "] " + desc);
+    };
     $(document).on('click', '#confirm_button', function(e) {
         var boton = $(this);
         boton.addClass('disabled');
@@ -151,4 +164,5 @@ $(document).ready(function() {
             });
         });
     });
+    // OPEN PAY END
 });

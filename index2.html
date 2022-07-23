@@ -186,18 +186,4 @@
   <script src="js/main.js"></script>
   <script src="https://js.openpay.mx/openpay.v1.min.js"></script>
   <script src="https://js.openpay.mx/openpay-data.v1.min.js"></script>
-  <script>
-    OpenPay.setSandboxMode(true);
-    OpenPay.setId('msrmt2amtq1l2fw1yp9z');
-    OpenPay.setApiKey('pk_3a2472a9794f4b1e828e0cde7bffb4ba');
-    var form = OpenPay.token.extractFormInfo('form_card', success_callbak, error_callbak);
-    var success_callbak = function(response) {
-      var token_id = response.data.id;
-      console.log(token_id);
-    };
-    var error_callbak = function(response) {
-      var desc = response.data.description != undefined ? response.data.description : response.message;
-      alert("ERROR [" + response.status + "] " + desc);
-    };
-  </script>
 </html>
