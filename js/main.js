@@ -35,7 +35,7 @@ $(document).ready(function() {
             });
             
             if(cbx.checked) {
-                // localStorage.setItem('celular', cel);
+                localStorage.setItem('celular', cel);
             }
             
         }else{
