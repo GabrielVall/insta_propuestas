@@ -60,7 +60,6 @@ $(document).ready(function() {
     });
     $(document).on('keyup', '#nombre', function(e) {
         var text = $(this).val();
-        console.log(text.length);
         if(text.length == 0){
             $('.name_payer')[0].innerHTML = 'Nombre del titular';
         }else{
@@ -112,13 +111,13 @@ $(document).ready(function() {
     });
     // on focus input
     $(document).on('focus', '#cvv', function(e) {
-        $('.cerdit_card')[0].classList.add('hidden');
-        $('.cerdit_card')[1].classList.remove('hidden');
+        $('.credit_card')[0].classList.add('hidden');
+        $('.credit_card')[1].classList.remove('hidden');
     });
     // on blur input
     $(document).on('blur', '#cvv', function(e) {
-        $('.cerdit_card')[1].classList.add('hidden');
-        $('.cerdit_card')[0].classList.remove('hidden');
+        $('.credit_card')[1].classList.add('hidden');
+        $('.credit_card')[0].classList.remove('hidden');
     });
     $(document).on('click', '.square', function(e) {
         $('.square').removeClass('selected');
