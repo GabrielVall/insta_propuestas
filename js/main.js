@@ -124,6 +124,9 @@ $(document).ready(function() {
         $(this).addClass('selected');
     });
     $(document).on('click', '#confirm_button', function(e) {
+        var boton = $(this);
+        boton.addClass('disabled');
+        boton.html('<div class="loader"></div>');
         OpenPay.token.extractFormAndCreate('form_card',function (response) {
             var token_id = response.data.id;
             var deviceSessionId = OpenPay.deviceData.setup("form_card", "deviceIdHiddenFieldName");
@@ -144,6 +147,7 @@ $(document).ready(function() {
               }else{
                     console.log('error');
               }
+              boton.html('PAGAR').removeClass('disabled');
             });
         });
     });

@@ -577,6 +577,7 @@ h1{
     min-height: 200px;
     color: white;
     flex-wrap: wrap;
+    position: relative;
 }
 .credit_header,.credit_bottom{
     width: 100%;
@@ -609,6 +610,7 @@ h1{
     font-size: 1.2em;
     letter-spacing: 3px;
     padding-top: 6px;
+    position: relative;
 }
 .credit_bottom{
     font-family: 'Ubuntu', sans-serif;
