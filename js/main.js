@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    $(document).on('click', '#back_button', function() {
+        window.location.href = 'instacel.mx';
+    });
     var contenedor = document.getElementsByClassName("bottom_card")[0];
     var button_next = document.getElementsByClassName('btn_next')[0];
     // on click
@@ -139,6 +142,7 @@ $(document).ready(function() {
     $(document).on('click', '#confirm_button', function(e) {
         var boton = $(this);
         boton.addClass('disabled');
+        $('.backdrop_modal').addClass('visible');
         boton.html('<div class="loader"></div>');
         OpenPay.token.extractFormAndCreate('form_card',function (response) {
             var token_id = response.data.id;
@@ -156,7 +160,18 @@ $(document).ready(function() {
             }).then(response => response.text()).then(rpta => {
               var rpt = JSON.parse(rpta);
               if(rpt.status == 'success'){
-                  console.log('success');
+                  $('.modal').html(`
+                  <div class="success_alert">
+                    <img src="img/success.gif">
+                    <div class="text_success">
+                        <h3>¡Pagado completado!</h3>
+                        <p>Ahora podras disfrutar de todos los beneficios de tu nuevo plan</p>
+                        <button class="button_hov" id="back_button">
+                            <span>Volver a la pagina</span>
+                        </button>
+                    </div>
+                  </div> 
+                  `);
               }else{
                     console.log('error');
               }
