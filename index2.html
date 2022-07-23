@@ -109,13 +109,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-90">
+                <div id="form_card" class="w-90">
                     <div class="form_content">
                         <form class="form">
                             <button class="svg_inps">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
                             </button>
-                            <input class="input" id="numero_tarjeta" placeholder="Número de la tarjeta" required="" type="text">
+                            <input class="input" id="numero_tarjeta" data-openpay-card="card_number" placeholder="Número de la tarjeta" required="" type="text">
                             <button class="reset" type="reset">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
@@ -128,7 +128,7 @@
                             <button class="svg_inps">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             </button>
-                            <input class="input" id="nombre" placeholder="Nombre completo" required="" type="text">
+                            <input class="input" id="nombre" placeholder="Nombre completo" data-openpay-card="holder_name" required="" type="text">
                             <button class="reset" type="reset">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
@@ -138,7 +138,7 @@
                     </div>
                     <div class="form_content some_inputs">
                         <form class="form">
-                            <select class="input" id="mes_select" placeholder="MM" required="" type="text">
+                            <select class="input" data-openpay-card="expiration_month" id="mes_select" placeholder="MM" required="" type="text">
                                 <option disabled selected>Mes</option>
                                 <option value="1">01</option>
                                 <option value="2">02</option>
@@ -160,7 +160,7 @@
                             </button>
                         </form>
                         <form class="form">
-                            <select class="input" id="year_select" placeholder="MM" required="" type="text">
+                            <select class="input" data-openpay-card="expiration_year" id="year_select" placeholder="MM" required="" type="text">
                                 <option disabled selected>Año</option>
                             </select>
                             <button class="reset" type="reset">
@@ -170,13 +170,16 @@
                             </button>
                         </form>
                         <form class="form">
-                            <input class="input" id="cvv" placeholder="CVV" required="" type="text">
+                            <input class="input" id="cvv" data-openpay-card="cvv2" placeholder="CVV" required="" type="text">
                             <button class="reset" type="reset">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                             </button>
                         </form>
+                    </div>
+                    <div class="button">
+                        <a href="javascript:void(0);" id="confirm_button" class="btn_next">Pagar</a>
                     </div>
                 </div>
             </div>
@@ -185,4 +188,21 @@
 </body>
 <script src="js/jquery.js"></script>
 <script src="js/main.js"></script>
+<script src="https://js.openpay.mx/openpay.v1.min.js"></script>
+<script src="https://js.openpay.mx/openpay-data.v1.min.js"></script>
+<script>
+    OpenPay.setSandboxMode(true);
+    OpenPay.setId('msrmt2amtq1l2fw1yp9z');
+    OpenPay.setApiKey('pk_3a2472a9794f4b1e828e0cde7bffb4ba');
+    var form = OpenPay.token.extractFormInfo('form_card',success_callbak,error_callbak);
+    var success_callbak = function(response) {
+        var token_id = response.data.id;
+        console.log(token_id);
+    };
+    var error_callbak = function(response) {
+        var desc = response.data.description != undefined ?
+        response.data.description : response.message;
+        alert("ERROR [" + response.status + "] " + desc);
+    };
+</script>
 </html>

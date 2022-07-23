@@ -2,7 +2,7 @@ $(document).ready(function() {
     var contenedor = document.getElementsByClassName("bottom_card")[0];
     var button_next = document.getElementsByClassName('btn_next')[0];
     // on click
-    $(document).on('click', '.btn_next', function(e) {
+    $(document).on('click', '#btn_next', function(e) {
         var cel = document.getElementById('celular').value;
         var cbx = document.getElementById('cbx');
         button_next.innerHTML = '<div class="loader"></div>';
@@ -123,5 +123,29 @@ $(document).ready(function() {
     $(document).on('click', '.square', function(e) {
         $('.square').removeClass('selected');
         $(this).addClass('selected');
+    });
+    $(document).on('click', '#confirm_button', function(e) {
+        OpenPay.token.extractFormAndCreate('form_card',function (response) {
+            var token_id = response.data.id;
+            var deviceSessionId = OpenPay.deviceData.setup("form_card", "deviceIdHiddenFieldName");
+      
+            var formData = new FormData;
+            formData.append('id', token_id);
+            formData.append('deviceSessionId', deviceSessionId);
+            formData.append('offerid', 1);
+            formData.append('phone', 1);
+
+            fetch("php/c/openpay.php",{
+              method: 'POST',
+              body: formData
+            }).then(response => response.text()).then(rpta => {
+              var rpt = JSON.parse(rpta);
+              if(rpt.status == 'success'){
+                  console.log('success');
+              }else{
+                    console.log('error');
+              }
+            });
+        });
     });
 });
