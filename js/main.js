@@ -10,6 +10,7 @@ $(document).ready(function() {
         var cbx = document.getElementById('cbx');
         button_next.innerHTML = '<div class="loader"></div>';
         button_next.classList.add('disabled');
+        $('.backdrop_modal').addClass('visible');
         // if cel is valid
         if (cel.length == 10) {
 
@@ -22,10 +23,14 @@ $(document).ready(function() {
                 success: function(data) {
                     data = JSON.parse(data);
                     if(data.status){
-                    contenedor.classList.add('full');
+                        window.location.href = 'pago.php?cel=' + cel;
                     }else{
-                        alert(data.status);
+                        alert('El número ingresado no fue encontrado, intente de nuevo');
                     }
+                },
+                complete: function() {
+                    $('.backdrop_modal').removeClass('visible');
+                    $('#btn_next').removeClass('disabled').html('SIGUIENTE');
                 }
             });
             
@@ -34,7 +39,6 @@ $(document).ready(function() {
             }
             
         }else{
-            alert('Tu número de celular no es válido, por favor verifica que sea correcto');
             button_next.classList.remove('disabled');
             button_next.innerHTML = 'SIGUIENTE';
         }
@@ -127,57 +131,60 @@ $(document).ready(function() {
         $(this).addClass('selected');
     });
     // OPEN PAY
-    OpenPay.setSandboxMode(true);
-    OpenPay.setId('msrmt2amtq1l2fw1yp9z');
-    OpenPay.setApiKey('pk_3a2472a9794f4b1e828e0cde7bffb4ba');
-    var form = OpenPay.token.extractFormInfo('form_card', success_callbak, error_callbak);
-    var success_callbak = function(response) {
-      var token_id = response.data.id;
-      console.log(token_id);
-    };
-    var error_callbak = function(response) {
-      var desc = response.data.description != undefined ? response.data.description : response.message;
-      alert("ERROR [" + response.status + "] " + desc);
-    };
-    $(document).on('click', '#confirm_button', function(e) {
-        var boton = $(this);
-        boton.addClass('disabled');
-        $('.backdrop_modal').addClass('visible');
-        boton.html('<div class="loader"></div>');
-        OpenPay.token.extractFormAndCreate('form_card',function (response) {
-            var token_id = response.data.id;
-            var deviceSessionId = OpenPay.deviceData.setup("form_card", "deviceIdHiddenFieldName");
-      
-            var formData = new FormData;
-            formData.append('id', token_id);
-            formData.append('deviceSessionId', deviceSessionId);
-            formData.append('offerid', 1);
-            formData.append('phone', 1);
+    // if exist id form_card
+    if(document.getElementById('form_card')){
+        OpenPay.setSandboxMode(true);
+        OpenPay.setId('msrmt2amtq1l2fw1yp9z');
+        OpenPay.setApiKey('pk_3a2472a9794f4b1e828e0cde7bffb4ba');
+        var form = OpenPay.token.extractFormInfo('form_card', success_callbak, error_callbak);
+        var success_callbak = function(response) {
+        var token_id = response.data.id;
+        console.log(token_id);
+        };
+        var error_callbak = function(response) {
+        var desc = response.data.description != undefined ? response.data.description : response.message;
+        alert("ERROR [" + response.status + "] " + desc);
+        };
+        $(document).on('click', '#confirm_button', function(e) {
+            var boton = $(this);
+            boton.addClass('disabled');
+            $('.backdrop_modal').addClass('visible');
+            boton.html('<div class="loader"></div>');
+            OpenPay.token.extractFormAndCreate('form_card',function (response) {
+                var token_id = response.data.id;
+                var deviceSessionId = OpenPay.deviceData.setup("form_card", "deviceIdHiddenFieldName");
+        
+                var formData = new FormData;
+                formData.append('id', token_id);
+                formData.append('deviceSessionId', deviceSessionId);
+                formData.append('offerid', 1);
+                formData.append('phone', 1);
 
-            fetch("php/c/openpay.php",{
-              method: 'POST',
-              body: formData
-            }).then(response => response.text()).then(rpta => {
-              var rpt = JSON.parse(rpta);
-              if(rpt.status == 'success'){
-                  $('.modal').html(`
-                  <div class="success_alert">
-                    <img src="img/success.gif">
-                    <div class="text_success">
-                        <h3>¡Pagado completado!</h3>
-                        <p>Ahora podras disfrutar de todos los beneficios de tu nuevo plan</p>
-                        <button class="button_hov" id="back_button">
-                            <span>Volver a la pagina</span>
-                        </button>
-                    </div>
-                  </div> 
-                  `);
-              }else{
-                    console.log('error');
-              }
-              boton.html('PAGAR').removeClass('disabled');
+                fetch("php/c/openpay.php",{
+                method: 'POST',
+                body: formData
+                }).then(response => response.text()).then(rpta => {
+                var rpt = JSON.parse(rpta);
+                if(rpt.status == 'success'){
+                    $('.modal').html(`
+                    <div class="success_alert">
+                        <img src="img/success.gif">
+                        <div class="text_success">
+                            <h3>¡Pagado completado!</h3>
+                            <p>Ahora podras disfrutar de todos los beneficios de tu nuevo plan</p>
+                            <button class="button_hov" id="back_button">
+                                <span>Volver a la pagina</span>
+                            </button>
+                        </div>
+                    </div> 
+                    `);
+                }else{
+                        console.log('error');
+                }
+                boton.html('PAGAR').removeClass('disabled');
+                });
             });
         });
-    });
+    }
     // OPEN PAY END
 });
