@@ -1,10 +1,25 @@
+<?php 
+// 1879901144
+// get offer id from url
+$offer_id = $_GET['offerid'];
+include_once("php/SQLConexion.php");
+$sql = new SQLConexion();
+$validar = $sql->obtenerResultado("CALL sp_validar_paquete('".$offer_id."')");
+if($validar){
+  // echo "Oferta validada";
+}else{
+  echo '<script>alert("Esta oferta dejo de estar disponible.");</script>';
+  // header("Location: http://instacel.mx");
+  // exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Propuesta</title>
+    <title>Instacel</title>
     <link rel="stylesheet" href="css/estilo.css?v">
   </head>
   <body>
@@ -28,12 +43,12 @@
           <div class="bottom_card full">
             <div class="text_card">
               <h1 class="desc_plan">Disfruta de los beneficios de este plan por solo <br>
-                <span class="price">$199.00 MXN</span>
+                <span class="price">$<?php echo $validar[0]['precio_paquete']; ?> MXN</span>
               </h1>
             </div>
             <div class="choose_payment">
               <div class="pay_title">
-                <h4>Escoge un metodo de pago</h4>
+                <h4>Selecciona un metodo de pago</h4>
               </div>
               <div class="squares">
                 <div class="square selected">
