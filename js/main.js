@@ -167,6 +167,10 @@ $(document).ready(function() {
         };
         $(document).on('click', '#confirm_button', function(e) {
             var boton = $(this);
+            // get cel from search
+            var cel = $('body').data('cel');
+            // get offerid from search
+            var offerid = $('body').data('offerid');
             boton.addClass('disabled');
             $('.backdrop_modal').addClass('visible');
             boton.html('<div class="loader"></div>');
@@ -177,8 +181,8 @@ $(document).ready(function() {
                 var formData = new FormData;
                 formData.append('id', token_id);
                 formData.append('deviceSessionId', deviceSessionId);
-                formData.append('offerid', 1);
-                formData.append('phone', 1);
+                formData.append('offerid', offerid);
+                formData.append('phone', cel);
 
                 fetch("php/c/openpay.php",{
                 method: 'POST',

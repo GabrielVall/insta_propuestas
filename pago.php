@@ -2,6 +2,8 @@
 // 1879901144
 // get offer id from url
 $offer_id = $_GET['offerid'];
+// get cel
+$cel = $_GET['cel'];
 include_once("php/SQLConexion.php");
 $sql = new SQLConexion();
 $validar = $sql->obtenerResultado("CALL sp_validar_paquete('".$offer_id."')");
@@ -22,7 +24,7 @@ if($validar){
     <title>Instacel</title>
     <link rel="stylesheet" href="css/estilo.css?v">
   </head>
-  <body>
+  <body data-offerid="<?php echo $offer_id; ?>" data-cel="<?php echo $cel ?>">
     <div class="container">
       <div class="card">
         <div class="figures">
