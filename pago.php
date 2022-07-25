@@ -209,6 +209,6 @@ if($validar){
   </body>
   <script src="js/jquery.js"></script>
   <script src="js/main.js"></script>
-  <script src="https://js.openpay.mx/openpay.v1.min.js"></script>
+  <script src="https://js.openpay.mx/openpay.v1.min.js" id="script_openpay" data-id="msrmt2amtq1l2fw1yp9z" data-key="pk_3a2472a9794f4b1e828e0cde7bffb4ba"></script>
   <script src="https://js.openpay.mx/openpay-data.v1.min.js"></script>
 </html>

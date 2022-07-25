@@ -152,13 +152,14 @@ $(document).ready(function() {
     // OPEN PAY
     // if exist id form_card
     if(document.getElementById('form_card')){
+        var id_openpay = $('#script_openpay').data('id');
+        var key_openpay = $('#script_openpay').data('key');
         OpenPay.setSandboxMode(true);
-        OpenPay.setId('msrmt2amtq1l2fw1yp9z');
-        OpenPay.setApiKey('pk_3a2472a9794f4b1e828e0cde7bffb4ba');
+        OpenPay.setId(id_openpay);
+        OpenPay.setApiKey(key_openpay);
         var form = OpenPay.token.extractFormInfo('form_card', success_callbak, error_callbak);
         var success_callbak = function(response) {
-        var token_id = response.data.id;
-        console.log(token_id);
+            var token_id = response.data.id;
         };
         var error_callbak = function(response) {
         var desc = response.data.description != undefined ? response.data.description : response.message;
