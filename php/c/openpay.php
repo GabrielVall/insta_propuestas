@@ -4,7 +4,7 @@ include_once("funciones.php");
 $sql = new SQLConexion();
 
 // Info del paquete
-$rpta = $sql->obtenerResultado("CALL sp_select_paquete_id({$_POST['offerid']})");
+$rpta = $sql->obtenerResultado("CALL sp_select_paquete_offerid({$_POST['offerid']})");
 
 // Obtener las keys de Openpay
 $select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
@@ -33,15 +33,12 @@ $customer = array(
 $chargeRequest = array(
     'method' => 'card',
     'source_id' => $_POST['id'],
-    // 'amount' => $rpta[0]['precio_paquete'],
-    'amount' => 10,
+    'amount' => $rpta[0]['precio_paquete'],
     'currency' => 'MXN',
-    // 'description' => $rpta[0]['nombre_paquete'],
-    'description' => 'Paquete de prueba',
+    'description' => $rpta[0]['nombre_paquete'],
     'order_id' => $id_date,
     'device_session_id' => $_POST['deviceSessionId'],
-    'customer' => $customer
-);
+    'customer' => $customer);
 
 // Realizamos la transaccion
 $charge = $openpay->charges->create($chargeRequest);
@@ -70,7 +67,7 @@ if ($payment_status == 'completed') {
     $pagar = $sql->obtenerResultadoSimple("CALL sp_insert_contratos_lineas_telefonicas1('".$id_linea[0][0]."',5,'".$_POST['offerid']."')");
 
     echo terminar_pago_api($_POST['offerid'],$id_linea[0][0]);
-
+   
 }else{
     echo json_encode(array('status' => 'error'));
 }

@@ -203,8 +203,22 @@ $(document).ready(function() {
                     </div> 
                     `);
                 }else{
-                        console.log('error');
-                }
+                        $('.top_modal').html('<img src="img/error.png">');
+                        $('.modal_content').html('Error, intenta más tarde');
+                        setTimeout(function(){
+                            $('.backdrop_modal').removeClass('visible');
+                            $('.backdrop_modal').html(`
+                            <div class="modal">
+                                <div class="top_modal">
+                                    <div class="loader green_load"></div>
+                                </div>
+                                <div class="modal_content">
+                                    Procesando pago...
+                                </div>
+                            </div>
+                            `);
+                        },5000);
+                }0
                 boton.html('PAGAR').removeClass('disabled');
                 });
             });
