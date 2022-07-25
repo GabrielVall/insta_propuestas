@@ -1,4 +1,22 @@
 $(document).ready(function() {
+    // if search not has offerid
+    if (window.location.search.indexOf('offerid') == -1) {
+        alert('No se ha encontrado el identificador de la oferta');
+        // window.location.href = 'https://instacel.mx/';
+    }
+    // if file is pago.php
+    if (window.location.href.indexOf("pago.php") > -1) {
+        
+    }else{
+        var num = localStorage.getItem('celular');
+        // get offerid from search
+        var offerid = window.location.search.split('=')[1];
+        if(num){
+            if(num.length == 10){
+                window.location.href = "pago.php?cel="+num+"&offerid="+offerid;
+            }
+        }
+    }
     $(document).on('click', '#back_button', function() {
         window.location.href = 'https://instacel.mx/';
     });
@@ -23,7 +41,12 @@ $(document).ready(function() {
                 success: function(data) {
                     data = JSON.parse(data);
                     if(data.status){
-                        window.location.href = 'pago.php?cel=' + cel;
+                        if(cbx.checked) {
+                            localStorage.setItem('celular', cel);
+                        }
+                        // get offerid from search
+                        var offerid = window.location.search.split('=')[1];
+                        window.location.href = 'pago.php?cel=' + cel + '&offerid=' + offerid;
                     }else{
                         alert('El número ingresado no fue encontrado, intente de nuevo');
                     }
@@ -33,10 +56,6 @@ $(document).ready(function() {
                     $('#btn_next').removeClass('disabled').html('SIGUIENTE');
                 }
             });
-            
-            if(cbx.checked) {
-                localStorage.setItem('celular', cel);
-            }
             
         }else{
             button_next.classList.remove('disabled');
