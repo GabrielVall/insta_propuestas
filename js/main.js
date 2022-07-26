@@ -148,7 +148,64 @@ $(document).ready(function() {
     $(document).on('click', '.square', function(e) {
         $('.square').removeClass('selected');
         $(this).addClass('selected');
+        var id = $(this).data('id');
+        $('.method').removeClass('show');
+        $('.method[data-id="'+id+'"]').addClass('show');
     });
+    // PAYPAL
+    var price = $('body').data('price');
+    var cel = $('body').data('cel');
+    // get offerid from search
+    var offerid = $('body').data('offerid');
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: price
+              }
+            }]
+          });
+        },onApprove: (data, actions) => {
+          return actions.order.capture().then(function(orderData) {
+              // const transaction = orderData.purchase_units[0].payments.captures[0];
+              fetch("php/c/validar_pago_paypal.php?paypal_orderid="+orderData.id+"&offerid="+offerid+"&phone="+cel).then(response => response.text()).then(rpta => {
+                $('.backdrop_modal').addClass('visible');
+                if(rpta.status == 'COMPLETED'){
+                  $('.modal').html(`
+                    <div class="success_alert">
+                        <img src="img/success.gif">
+                        <div class="text_success">
+                            <h3>¡Pagado completado!</h3>
+                            <p>Ahora podras disfrutar de todos los beneficios de tu nuevo plan</p>
+                            <button class="button_hov" id="back_button">
+                                <span>Volver a la pagina</span>
+                            </button>
+                        </div>
+                    </div> 
+                    `);
+                }else{
+                    $('.top_modal').html('<img src="img/error.png">');
+                    $('.modal_content').html('Error, intenta más tarde');
+                    setTimeout(function(){
+                        $('.backdrop_modal').removeClass('visible');
+                        $('.backdrop_modal').html(`
+                        <div class="modal">
+                            <div class="top_modal">
+                                <div class="loader green_load"></div>
+                            </div>
+                            <div class="modal_content">
+                                Procesando pago...
+                            </div>
+                        </div>
+                        `);
+                    },5000);
+                }
+              });
+          });
+        }
+      }).render('#paypal'); 
+    // END PAYPAL
     // OPEN PAY
     // if exist id form_card
     if(document.getElementById('form_card')){
@@ -218,7 +275,7 @@ $(document).ready(function() {
                             </div>
                             `);
                         },5000);
-                }0
+                }
                 boton.html('PAGAR').removeClass('disabled');
                 });
             });

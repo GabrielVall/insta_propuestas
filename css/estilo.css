@@ -818,3 +818,20 @@ h1{
   transform: scale(1);
  }
 }
+.method{
+    display: none;
+}
+.show{
+    display: block;
+}
+.paypal_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.paypal_btn a{
+    margin-top: 2em;
+    width: 80%;
+}
