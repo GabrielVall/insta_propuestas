@@ -209,7 +209,9 @@ if($validar){
                 </div>
             </span>
             <span class="method" data-id="4">
-              <a id="paypal"></a>
+              <div class="button">
+                  <a href="javascript:void(0);" id="btn_mercadopago" class="btn_next">MercadoPago</a>
+                </div>
             </span>
             </div>
           </div>

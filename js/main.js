@@ -152,9 +152,22 @@ $(document).ready(function() {
         $('.method').removeClass('show');
         $('.method[data-id="'+id+'"]').addClass('show');
     });
+    // mercadopago
+    $(document).on('click', '#btn_mercadopago', function(e) {
+        var price = $('body').data('price');
+        var cel = $('body').data('cel');
+        // get offerid from search
+        var offerid = $('body').data('offerid');
+        fetch("php/c/mercadopago.php?offerid="+offerid).then(response => response.text()).then(rpta => {
+            window.location.href = rpta;
+        });
+    });
+    if(window.location.search.indexOf('pending_mercadopago') != -1){
+    }
+    // end mercadopago
     // STRIPE
     // if search has pending
-    if(window.location.search.indexOf('pending') != -1){
+    if(window.location.search.indexOf('pending_stripe') != -1){
         var phone = $('body').data('cel');
         $('.backdrop_modal').addClass('visible');
         fetch("php/c/validar_pago_stripe.php?phone="+phone).then(response => response.text()).then(rpta => {
