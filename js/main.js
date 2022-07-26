@@ -152,6 +152,9 @@ $(document).ready(function() {
         $('.method').removeClass('show');
         $('.method[data-id="'+id+'"]').addClass('show');
     });
+    // STRIPE
+    
+    // END STRIPE
     // PAYPAL
     var price = $('body').data('price');
     var cel = $('body').data('cel');

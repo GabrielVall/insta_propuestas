@@ -204,7 +204,9 @@ if($validar){
               </div>
             </span>
             <span class="method" data-id="3">
-              <a id="paypal"></a>
+                <div class="button">
+                  <a href="php/c/stripe.php?offerid=<?php echo $_GET['offerid']; ?>" class="btn_next">USAR STRIPE</a>
+                </div>
             </span>
             <span class="method" data-id="4">
               <a id="paypal"></a>
