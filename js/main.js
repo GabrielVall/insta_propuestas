@@ -158,7 +158,7 @@ $(document).ready(function() {
         var cel = $('body').data('cel');
         // get offerid from search
         var offerid = $('body').data('offerid');
-        fetch("php/c/mercadopago.php?offerid="+offerid).then(response => response.text()).then(rpta => {
+        fetch("php/c/mercadopago.php?offerid="+offerid+"&cel=" + cel).then(response => response.text()).then(rpta => {
             window.location.href = rpta;
         });
     });

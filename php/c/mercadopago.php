@@ -10,7 +10,7 @@ $select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
 $secret_mp = $select_keys[3]['valor_configuracion'];
 
 // SDK de Mercado Pago
-require  '../mercadopago/autoload.php';
+require  '../../mercado/vendor/autoload.php';
 
 // Agrega credenciales
 MercadoPago\SDK::setAccessToken($secret_mp);
