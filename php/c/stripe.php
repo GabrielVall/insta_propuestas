@@ -13,7 +13,7 @@ $secret_stripe = $select_keys[2]['valor_configuracion'];
 require '../../stripe/vendor/autoload.php';
 \Stripe\Stripe::setApiKey($secret_stripe);
 header('Content-Type: application/json');
-$YOUR_DOMAIN = 'http://localhost/recargas/cautivo';
+$YOUR_DOMAIN = 'http://localhost/recargas/pago.php';
 $checkout_session = \Stripe\Checkout\Session::create([
     'line_items' => [[
         'price_data' => [
@@ -26,8 +26,8 @@ $checkout_session = \Stripe\Checkout\Session::create([
         'quantity' => 1,
     ]],
   'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '#pending_stripe',
-  'cancel_url' => $YOUR_DOMAIN . '#error',
+  'success_url' => $YOUR_DOMAIN . '?pending_stripe=1&offerid='.$_GET['offerid'].'&cel='.$_GET['cel'],
+  'cancel_url' => $YOUR_DOMAIN . '?error=1&offerid='.$_GET['offerid'].'&cel='.$_GET['cel'],
 ]);
 $_SESSION['stripe_session_id'] = $checkout_session['id'];
 // $validar_pago = \Stripe\Checkout\Session::retrive([

@@ -205,7 +205,7 @@ if($validar){
             </span>
             <span class="method" data-id="3">
                 <div class="button">
-                  <a href="php/c/stripe.php?offerid=<?php echo $_GET['offerid']; ?>" class="btn_next">USAR STRIPE</a>
+                  <a href="php/c/stripe.php?offerid=<?php echo $_GET['offerid']; ?>&cel=<?php echo $_GET['cel'] ?>" class="btn_next">USAR STRIPE</a>
                 </div>
             </span>
             <span class="method" data-id="4">

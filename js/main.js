@@ -153,7 +153,64 @@ $(document).ready(function() {
         $('.method[data-id="'+id+'"]').addClass('show');
     });
     // STRIPE
-    
+    // if search has pending
+    if(window.location.search.indexOf('pending') != -1){
+        var phone = $('body').data('cel');
+        $('.backdrop_modal').addClass('visible');
+        fetch("php/c/validar_pago_stripe.php?phone="+phone).then(response => response.text()).then(rpta => {
+            var res = JSON.parse(rpta);
+            if(res.status =='success'){
+                $('.backdrop_modal').addClass('visible');
+                $('.modal').html(`
+                <div class="success_alert">
+                    <img src="img/success.gif">
+                    <div class="text_success">
+                        <h3>¡Pagado completado!</h3>
+                        <p>Ahora podras disfrutar de todos los beneficios de tu nuevo plan</p>
+                        <button class="button_hov" id="back_button">
+                            <span>Volver a la pagina</span>
+                        </button>
+                    </div>
+                </div> 
+                `);
+            }else{
+                $('.top_modal').html('<img src="img/error.png">');
+                $('.modal_content').html('Error, intenta más tarde');
+                setTimeout(function(){
+                    $('.backdrop_modal').removeClass('visible');
+                    $('.backdrop_modal').html(`
+                    <div class="modal">
+                        <div class="top_modal">
+                            <div class="loader green_load"></div>
+                        </div>
+                        <div class="modal_content">
+                            Procesando pago...
+                        </div>
+                    </div>
+                    `);
+                },5000);
+            }
+        });
+    }   
+    // if search has error
+    if(window.location.search.indexOf('error') != -1){
+        $('.backdrop_modal').addClass('visible');
+        $('.top_modal').html('<img src="img/error.png">');
+        $('.modal_content').html('Error, intenta más tarde');
+        setTimeout(function(){
+            $('.backdrop_modal').removeClass('visible');
+            $('.backdrop_modal').html(`
+            <div class="modal">
+                <div class="top_modal">
+                    <div class="loader green_load"></div>
+                </div>
+                <div class="modal_content">
+                    Procesando pago...
+                </div>
+            </div>
+            `);
+        },5000);
+    } 
     // END STRIPE
     // PAYPAL
     var price = $('body').data('price');
