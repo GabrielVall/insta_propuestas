@@ -27,7 +27,7 @@ if($validar){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Instacel</title>
     <link rel="stylesheet" href="css/estilo.css?v=1.">
-    <link rel="stylesheet" href="css/responsive.css?">
+    <link rel="stylesheet" href="css/responsive.css?v">
     <script src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypal_clientID; ?>&currency=MXN"></script>
   </head>
   <body data-paypal-client-id="<?php echo $paypal_clientID; ?>" data-offerid="<?php echo $offer_id; ?>" data-cel="<?php echo $cel ?>" data-price="<?php echo $validar[0]['precio_paquete']; ?>">
