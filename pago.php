@@ -7,6 +7,10 @@ $cel = $_GET['cel'];
 include_once("php/SQLConexion.php");
 $sql = new SQLConexion();
 $validar = $sql->obtenerResultado("CALL sp_validar_paquete('".$offer_id."')");
+$select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
+$paypal_clientID = $select_keys[0]['valor_configuracion'];
+$OpenPay_ID	 = $select_keys[4]['valor_configuracion'];
+$openpay_key =  $select_keys[5]['valor_configuracion'];
 if($validar){
   // echo "Oferta validada";
 }else{
@@ -23,9 +27,9 @@ if($validar){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Instacel</title>
     <link rel="stylesheet" href="css/estilo.css?v=">
-    <script src="https://www.paypal.com/sdk/js?client-id=AeZvYAHB1Us7Y-sZ6mKZLJZ2qDQ0Q9LEjYiihbHH2kmHGJ523xf7nSBI-rFj65zD66FF4xD2mFSAw6CS&currency=MXN"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypal_clientID; ?>&currency=MXN"></script>
   </head>
-  <body data-offerid="<?php echo $offer_id; ?>" data-cel="<?php echo $cel ?>" data-price="<?php echo $validar[0]['precio_paquete']; ?>">
+  <body data-paypal-client-id="<?php echo $paypal_clientID; ?>" data-offerid="<?php echo $offer_id; ?>" data-cel="<?php echo $cel ?>" data-price="<?php echo $validar[0]['precio_paquete']; ?>">
     <div class="container">
       <div class="card">
         <div class="figures">
@@ -230,6 +234,6 @@ if($validar){
   </body>
   <script src="js/jquery.js"></script>
   <script src="js/main.js?"></script>
-  <script src="https://js.openpay.mx/openpay.v1.min.js" id="script_openpay" data-id="msrmt2amtq1l2fw1yp9z" data-key="pk_3a2472a9794f4b1e828e0cde7bffb4ba"></script>
+  <script src="https://js.openpay.mx/openpay.v1.min.js" id="script_openpay" data-id="<?php echo $OpenPay_ID; ?>" data-key="<?php echo $openpay_key; ?>"></script>
   <script src="https://js.openpay.mx/openpay-data.v1.min.js"></script>
 </html>
