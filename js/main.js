@@ -1,5 +1,6 @@
 $(document).ready(function() {
     // if search not has offerid
+    // if page is index.html 
     if (window.location.search.indexOf('offerid') == -1) {
         alert('No se ha encontrado el identificador de la oferta');
         // window.location.href = 'https://instacel.mx/';
@@ -163,7 +164,65 @@ $(document).ready(function() {
         });
     });
     if(window.location.search.indexOf('pending_mercadopago') != -1){
+        var x = window.location.search;
+        var y = x.substring(x.indexOf('?') + 1);
+        var MercadoPago = URLToArray(y);
+        var cel = $('body').data('cel');
+        var formData = new FormData;
+        formData.append('payment_id', MercadoPago.collection_id);
+        formData.append('phone', cel);
+
+        fetch("php/c/validar_pago_mercado_pago.php",{
+            method: 'POST',
+            body: formData
+        }).then(response => response.text()).then(rpta => {
+            var res = JSON.parse(rpta);
+            // var data_return = JSON.parse(rpta);
+            if(res.status == 'success'){
+                $('.backdrop_modal').addClass('visible');
+                $('.modal').html(`
+                <div class="success_alert">
+                    <img src="img/success.gif">
+                    <div class="text_success">
+                        <h3>¡Pagado completado!</h3>
+                        <p>Ahora podras disfrutar de todos los beneficios de tu nuevo plan</p>
+                        <button class="button_hov" id="back_button">
+                            <span>Volver a la pagina</span>
+                        </button>
+                    </div>
+                </div> 
+                `);
+            }else{
+                $('.backdrop_modal').addClass('visible');
+                $('.top_modal').html('<img src="img/error.png">');
+                $('.modal_content').html('Error, intenta más tarde');
+                setTimeout(function(){
+                    $('.backdrop_modal').removeClass('visible');
+                    $('.backdrop_modal').html(`
+                    <div class="modal">
+                        <div class="top_modal">
+                            <div class="loader green_load"></div>
+                        </div>
+                        <div class="modal_content">
+                            Procesando pago...
+                        </div>
+                    </div>
+                    `);
+                },5000);
+            }
+        });
     }
+    function URLToArray(url) {
+        var request = {};
+        var pairs = url.substring(url.indexOf('?') + 1).split('&');
+        for (var i = 0; i < pairs.length; i++) {
+            if(!pairs[i])
+                continue;
+            var pair = pairs[i].split('=');
+            request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+         }
+         return request;
+      }      
     // end mercadopago
     // STRIPE
     // if search has pending

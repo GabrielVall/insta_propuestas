@@ -30,7 +30,7 @@ $preference->binary_mode = true;
     "binary_mode" => "true"
     );
 $preference->back_urls = array(
-    "success" => '?pending_mercadopago=1&offerid='.$_GET['offerid'].'&cel='.$_GET['cel'],
+    "success" => $YOUR_DOMAIN . '?pending_mercadopago=1&offerid='.$_GET['offerid'].'&cel='.$_GET['cel'],
     "failure" => $YOUR_DOMAIN . '?error=1&offerid='.$_GET['offerid'].'&cel='.$_GET['cel'],
 );
 $preference->auto_return = "approved";
