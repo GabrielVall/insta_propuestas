@@ -18,7 +18,7 @@ MercadoPago\SDK::setAccessToken($secret_mp);
 
 // Crea un objeto de preferencia
 $preference = new MercadoPago\Preference();
-$YOUR_DOMAIN = 'https://recargas.instacel.mx/';
+$YOUR_DOMAIN = 'https://recargas.instacel.mx/pago.php';
 // Crea un 赤tem en la preferencia
 $item = new MercadoPago\Item();
 $item->title = 'Paquete instacel: '.$rpta[0]['nombre_paquete']; 
