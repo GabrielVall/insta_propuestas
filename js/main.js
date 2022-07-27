@@ -302,6 +302,7 @@ $(document).ready(function() {
           return actions.order.capture().then(function(orderData) {
               // const transaction = orderData.purchase_units[0].payments.captures[0];
               fetch("php/c/validar_pago_paypal.php?paypal_orderid="+orderData.id+"&offerid="+offerid+"&phone="+cel).then(response => response.text()).then(rpta => {
+                console.log(rpta);
                 $('.backdrop_modal').addClass('visible');
                 if(rpta.status == 'success'){
                   $('.modal').html(`
