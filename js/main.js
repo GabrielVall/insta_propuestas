@@ -304,7 +304,7 @@ $(document).ready(function() {
               fetch("php/c/validar_pago_paypal.php?paypal_orderid="+orderData.id+"&offerid="+offerid+"&phone="+cel).then(response => response.text()).then(rpta => {
                 var res = JSON.parse(rpta);
                 $('.backdrop_modal').addClass('visible');
-                if(rpta.status == 'success'){
+                if(res.status == 'success'){
                   $('.modal').html(`
                     <div class="success_alert">
                         <img src="img/success.gif">
