@@ -4,7 +4,7 @@
 $offer_id = $_GET['offerid'];
 // get cel
 $cel = $_GET['cel'];
-include_once("php/SQLConexion.php");
+include_once("funciones.php");
 $sql = new SQLConexion();
 $validar = $sql->obtenerResultado("CALL sp_validar_paquete('".$offer_id."')");
 $select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
