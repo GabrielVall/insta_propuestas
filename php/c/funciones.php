@@ -103,8 +103,8 @@ function function_api_altan_1($url, $method, $authorization, $data=''){
   global $sql;
 	// Enviamos la solicitud a altan
   $token = function_api_altan_1('https://altanredes-prod.apigee.net/v1/oauth/accesstoken?grant-type=client_credentials','POST','Basic NlRZNkhhdzVsY3R3THlTeFdYNk9OT1N1MHE4dHA4R3I6RFJxQVNFb2h2dHpkWG81RA==');
+  echo "SELECT fn_select_offerid('".$id_oferta."')";
   $offerid=$sql->obtenerResultado("SELECT fn_select_offerid('".$id_oferta."')");
-  var_dump($offerid[0][0]);
   $msisdn=$sql->obtenerResultado("SELECT fn_select_msisdn('".$id_linea."')");
   // ACTIVACIÓN DE SIMCARD EN LA API
 //   $data_json = array("msisdn"=>$msisdn[0][0], "offerings"=>[$offerid[0][0]]);
