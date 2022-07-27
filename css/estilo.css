@@ -348,6 +348,7 @@ h1{
     text-transform: uppercase;
     text-shadow: rgb(255 255 255) 1px 0px;
     letter-spacing: 1px;
+    margin-bottom: 5em;
   }
   .cbx {
     position: relative;

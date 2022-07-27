@@ -26,8 +26,8 @@ if($validar){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Instacel</title>
-    <link rel="stylesheet" href="css/estilo.css?v=1">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/estilo.css?v=1.">
+    <link rel="stylesheet" href="css/responsive.css?">
     <script src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypal_clientID; ?>&currency=MXN"></script>
   </head>
   <body data-paypal-client-id="<?php echo $paypal_clientID; ?>" data-offerid="<?php echo $offer_id; ?>" data-cel="<?php echo $cel ?>" data-price="<?php echo $validar[0]['precio_paquete']; ?>">
@@ -236,7 +236,7 @@ if($validar){
       </div>
   </body>
   <script src="js/jquery.js"></script>
-  <script src="js/main.js?"></script>
+  <script src="js/main.js?v"></script>
   <script src="https://js.openpay.mx/openpay.v1.min.js" id="script_openpay" data-id="<?php echo $OpenPay_ID; ?>" data-key="<?php echo $openpay_key; ?>"></script>
   <script src="https://js.openpay.mx/openpay-data.v1.min.js"></script>
 </html>

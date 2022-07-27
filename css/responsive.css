@@ -1,3 +1,16 @@
+.bottom_card.full {
+    max-height: 100%;
+}
+.max-h{
+    height: 100%;
+    overflow-y: scroll;
+}
+.max-h{
+    max-height: 100%;
+    overflow-y: scroll;
+    padding-top: 2em;
+    padding-bottom: 4em;
+}
 /* medias for desktop */
 @media only screen and (min-width: 800px) {
     .bottom_card.full {
@@ -5,19 +18,6 @@
     }
     .content_card {
         justify-content: space-between !important;
-    }
-    .bottom_card.full {
-        max-height: 100%;
-    }
-    .max-h{
-        height: 100%;
-        overflow-y: scroll;
-    }
-    .max-h{
-        max-height: 100%;
-        overflow-y: scroll;
-        padding-top: 2em;
-        padding-bottom: 4em;
     }
     /* width */
     .max-h::-webkit-scrollbar {
