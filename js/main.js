@@ -3,7 +3,7 @@ $(document).ready(function() {
     // if page is index.html 
     if (window.location.search.indexOf('offerid') == -1) {
         alert('No se ha encontrado el identificador de la oferta');
-        // window.location.href = 'https://instacel.mx/';
+        window.location.href = 'https://instacel.mx/';
     }
     // if file is pago.php
     if (window.location.href.indexOf("pago.php") > -1) {

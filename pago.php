@@ -11,8 +11,8 @@ if($validar){
   // echo "Oferta validada";
 }else{
   echo '<script>alert("Esta oferta dejo de estar disponible.");</script>';
-  // header("Location: http://instacel.mx");
-  // exit();
+  header("Location: http://instacel.mx");
+  exit();
 }
 ?>
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ if($validar){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Instacel</title>
-    <link rel="stylesheet" href="css/estilo.css?v">
+    <link rel="stylesheet" href="css/estilo.css?v=">
     <script src="https://www.paypal.com/sdk/js?client-id=AeZvYAHB1Us7Y-sZ6mKZLJZ2qDQ0Q9LEjYiihbHH2kmHGJ523xf7nSBI-rFj65zD66FF4xD2mFSAw6CS&currency=MXN"></script>
   </head>
   <body data-offerid="<?php echo $offer_id; ?>" data-cel="<?php echo $cel ?>" data-price="<?php echo $validar[0]['precio_paquete']; ?>">
@@ -229,7 +229,7 @@ if($validar){
       </div>
   </body>
   <script src="js/jquery.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?"></script>
   <script src="https://js.openpay.mx/openpay.v1.min.js" id="script_openpay" data-id="msrmt2amtq1l2fw1yp9z" data-key="pk_3a2472a9794f4b1e828e0cde7bffb4ba"></script>
   <script src="https://js.openpay.mx/openpay-data.v1.min.js"></script>
 </html>
