@@ -13,7 +13,7 @@ $secret_stripe = $select_keys[2]['valor_configuracion'];
 require '../../stripe/vendor/autoload.php';
 \Stripe\Stripe::setApiKey($secret_stripe);
 header('Content-Type: application/json');
-$YOUR_DOMAIN = 'http://localhost/recargas/pago.php';
+$YOUR_DOMAIN = 'https://recargas.instacel.mx/';
 $checkout_session = \Stripe\Checkout\Session::create([
     'line_items' => [[
         'price_data' => [
