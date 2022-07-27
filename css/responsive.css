@@ -13,6 +13,9 @@
 }
 /* medias for desktop */
 @media only screen and (min-width: 800px) {
+    .max-h{
+        padding-top: 5em;
+    }
     .bottom_card.full {
         max-width: 440px;
     }
