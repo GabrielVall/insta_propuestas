@@ -61,7 +61,7 @@ class RestClient
         foreach ($default_header as $key => $value) {
             $headers[] = $key . ': ' . $value;
         }
-
+        
         $connect->setOption(CURLOPT_HTTPHEADER, $headers);
     }
 

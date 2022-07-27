@@ -1,7 +1,4 @@
 <?php
-/**
- * Authorized Payments class file
- */
 namespace MercadoPago;
 
 use MercadoPago\Annotation\RestMethod;
@@ -9,8 +6,6 @@ use MercadoPago\Annotation\RequestParam;
 use MercadoPago\Annotation\Attribute;
 
 /**
- * Authorized Payments Class
- *
  * @RestMethod(resource="/authorized_payments/:id", method="read")
  * @RestMethod(resource="/authorized_payments/search", method="search")
  */
@@ -18,130 +13,114 @@ use MercadoPago\Annotation\Attribute;
 class AuthorizedPayment extends Entity
 {
     /**
-     * id
      * @Attribute(primaryKey = true)
-     * @var int
+     * @var
      */
     protected $id;
 
     /**
-     * preapprova_id
      * @Attribute(type = "string")
-     * @var int
+     * @var
      */
     protected $preapproval_id;
 
     /**
-     * type
      * @Attribute(type = "string")
-     * @var string
+     * @var
      */
     protected $type;
 
     /**
-     * status
      * @Attribute(type = "string")
-     * @var string
+     * @var
      */
     protected $status;
 
     /**
-     * date_created
      * @Attribute(type = "date")
-     * @var string
+     * @var
      */
     protected $date_created;
 
     /**
-     * last_modified
      * @Attribute(type = "date")
-     * @var string
+     * @var
      */
     protected $last_modified;
 
     /**
-     * transaction_amount
      * @Attribute(type = "float")
-     * @var float
+     * @var
      */
     protected $transaction_amount;
 
     /**
-     * currency_id
      * @Attribute(type = "string")
-     * @var string
+     * @var
      */
     protected $currency_id;
 
     /**
-     * reason
      * @Attribute(type = "string")
-     * @var string
+     * @var
      */
     protected $reason;
 
      /**
-      * external_reference
      * @Attribute(type = "string")
-     * @var string
+     * @var
      */
     protected $external_reference;
 
      /**
-      * payment
      * @Attribute(type = "object")
-     * @var object
+     * @var
      */
     protected $payment;
 
     /**
-     * rejection_code
      * @Attribute(type = "string")
-     * @var string
+     * @var
      */
     protected $rejection_code;
 
     /**
-     * retry_attempt
      * @Attribute(type = "string")
-     * @var string
+     * @var
      */
     protected $retry_attempt;
 
     /**
-     * next_retry_date
      * @Attribute(type = "date")
-     * @var string
+     * @var
      */
     protected $next_retry_date;
 
     /**
-     * last_retry_date
      * @Attribute(type = "date")
-     * @var string
+     * @var
      */
     protected $last_retry_date;
 
     /**
-     * expire_date
      * @Attribute(type = "date")
-     * @var string
+     * @var
      */
     protected $expire_date;
 
     /**
-     * debit_date
      * @Attribute(type = "date")
-     * @var string
+     * @var
      */
     protected $debit_date;
 
     /**
-     * coupon_code
      * @Attribute(type = "string")
-     * @var string
+     * @var
      */
     protected $coupon_code;
 
 
 }
+
+?>

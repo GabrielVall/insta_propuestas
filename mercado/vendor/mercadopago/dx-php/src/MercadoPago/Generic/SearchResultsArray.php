@@ -26,8 +26,9 @@
         public function next() {
             $new_offset = $this->limit + $this->offset;
             $this->_filters['offset'] = $new_offset;
-            $result = $this->_class::search($this->_filters);
- 
+            $class = $this->_class;
+            $result = $class::search($this->_filters);
+
             $this->limit = $result->limit;
             $this->offset = $result->offset;
             $this->total = $result->total;
@@ -63,8 +64,8 @@
                 $message['error'],
                 $message['status']
             );
-            
-            foreach ($message['cause'] as $causes) { 
+    
+            foreach ($message['causes'] as $causes) { 
                 if(is_array($causes)) {
                     foreach ($causes as $cause) {
                         $recuperable_error->add_cause($cause['code'], $cause['description']);

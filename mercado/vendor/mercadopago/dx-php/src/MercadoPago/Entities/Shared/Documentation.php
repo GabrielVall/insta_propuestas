@@ -1,36 +1,32 @@
 <?php
-/**
- * Documentation class file
- */
 namespace MercadoPago;
 
 use MercadoPago\Annotation\Attribute;
 use MercadoPago\Annotation\DenyDynamicAttribute;
 
 /**
- * Documentation class
+ * Payer Class Doc Comment
+ *
+ * @package MercadoPago
  */
 class Documentation extends Entity
 {
     /**
-     * type
-     * @Attribute(type = "string", readOnly = true)
-     * @var string
+    * @Attribute()
     */
     protected $type;
-
     /**
-     * url
-     * @Attribute(type = "string", readOnly = true)
-     * @var string
+    * @Attribute(type = "string", readOnly = true)
     */
     protected $url;
-
     /**
-     * description
     * @Attribute(type = "string", readOnly = true)
-     * @var string
     */
     protected $description;
+    /**
+    * @Attribute(type = "string", readOnly = true)
+    */
 
 }
+
+?>

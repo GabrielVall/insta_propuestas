@@ -1,4 +1,6 @@
 <?php
+
+
 namespace MercadoPago\AdvancedPayments;
 
 use MercadoPago\Annotation\RestMethod;
@@ -7,9 +9,6 @@ use MercadoPago\Annotation\Attribute;
 use MercadoPago\Entity;
 
 /**
- * Advanced Payment class
- * @link https://www.mercadopago.com/developers/en/reference/advanced_payments/_advanced_payments_id_search/get/ Click here for more infos
- * 
  * @RestMethod(resource="/v1/advanced_payments", method="create")
  * @RestMethod(resource="/v1/advanced_payments/:id", method="read")
  * @RestMethod(resource="/v1/advanced_payments/search", method="search")
@@ -20,79 +19,59 @@ class AdvancedPayment extends Entity
 {
 
     /**
-     * id
-     * @var int
+     * @var
      * @Attribute()
      */
     protected $id;
 
     /**
-     * application_id
-     * @var int
+     * @var
      * @Attribute()
      */
     protected $application_id;
 
     /**
-     * payments
-     * @var array
-     * @Attribute()
+     * @var
      */
     protected $payments;
 
     /**
-     * disbursements
-     * @var array
-     * @Attribute()
+     * @var
      */
     protected $disbursements;
 
     /**
-     * payer
-     * @var object
-     * @Attribute()
+     * @var
      */
     protected $payer;
 
     /**
-     * external_reference
-     * @var string
-     * @Attribute()
+     * @var
      */
     protected $external_reference;
 
     /**
-     * description
-     * @var string
-     * @Attribute()
+     * @var
      */
     protected $description;
 
     /**
-     * binary_mode
-     * @var boolean
-     * @Attribute()
+     * @var
      */
     protected $binary_mode;
 
     /**
-     * status
-     * @var string
-     * @Attribute()
+     * @var
      */
     protected $status;
 
     /**
-     * capture
-     * @var boolean
-     * @Attribute()
+     * @var
      */
     protected $capture;
 
-
     /**
-     * cancel
-     * @return bool|mixed
+     * @return mixed
      * @throws \Exception
      */
     public function cancel() {
@@ -101,10 +80,8 @@ class AdvancedPayment extends Entity
         return $this->update();
     }
 
-
     /**
-     * capture
-     * @return bool|mixed
+     * @return mixed
      * @throws \Exception
      */
     public function capture()
@@ -114,9 +91,7 @@ class AdvancedPayment extends Entity
         return $this->update();
     }
 
-
     /**
-     * refund
      * @param int $amount
      * @return bool
      * @throws \Exception
@@ -139,7 +114,6 @@ class AdvancedPayment extends Entity
 
 
     /**
-     * refundDisbursement
      * @param $disbursement_id
      * @param int $amount
      * @return bool

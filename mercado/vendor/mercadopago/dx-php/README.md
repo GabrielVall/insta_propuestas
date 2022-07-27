@@ -1,71 +1,78 @@
 # Mercado Pago SDK for PHP
 
-[![Latest Stable Version](https://poser.pugx.org/mercadopago/dx-php/v/stable)](https://packagist.org/packages/mercadopago/dx-php)
-[![Total Downloads](https://poser.pugx.org/mercadopago/dx-php/downloads)](https://packagist.org/packages/mercadopago/dx-php)
-[![License](https://poser.pugx.org/mercadopago/dx-php/license)](https://packagist.org/packages/mercadopago/dx-php)
+[![Build Status](https://travis-ci.org/mercadopago/dx-php.png)](https://travis-ci.org/mercadopago/dx-php)
 
-This library provides developers with a simple set of bindings to help you integrate Mercado Pago API to a website and start receiving payments.
+This library provides developers with a simple set of bindings to the Mercado Pago API.
 
-## 💡 Requirements
+### PHP Versions Supported:
 
-PHP 5.6, 7.1 or higher
+The SDK supports PHP 5.6 or major
 
-## 💻 Installation 
+### Installation 
 
-First time using Mercado Pago? Create your [Mercado Pago account](https://www.mercadopago.com), if you don’t have one already.
+#### Using Composer
 
-1. Download [Composer](https://getcomposer.org/doc/00-intro.md) if not already installed
+1. Download [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) if not already installed
+2. Go to your project directory and run `composer require "mercadopago/dx-php:1.12.5"` on the command line.
+3. This how your directory structure would look like.
+4. Thats all, you have Mercado Pago SDK installed.
 
-2. On your project directory run on the command line
-`composer require "mercadopago/dx-php:2.4.9"` for PHP7 or `composer require "mercadopago/dx-php:1.12.5"` for PHP5.6.
+![installation-demo](img/ezgif-2-f98e8701825e.gif)
 
-3. Copy the access_token in the [credentials](https://www.mercadopago.com/mlb/account/credentials) section of the page and replace YOUR_ACCESS_TOKEN with it.
+### Quick Start 
 
-That's it! Mercado Pago SDK has been successfully installed.
+1. You have to require the library from your Composer vendor folder.
 
-## 🌟 Getting Started
+  ```php
+  require __DIR__  . '/vendor/autoload.php';
+  ```
+
+2. Setup your credentials
+
+  You have two types of credentials:
+
+  * **For API or custom checkout:**
+    ```php
+    MercadoPago\SDK::setAccessToken("YOUR_ACCESS_TOKEN");      // On Production
+    MercadoPago\SDK::setAccessToken("YOUR_TEST_ACCESS_TOKEN"); // On Sandbox
+    ```
+  * **For Web-checkout:**
+    ```php
+    MercadoPago\SDK::setClientId("YOUR_CLIENT_ID");
+    MercadoPago\SDK::setClientSecret("YOUR_CLIENT_SECRET");
+    ```
+
+3. Using resource objects.
+
+  You can interact with all the resources available in the public API, to this each resource is represented by classes according to the following diagram:
   
-  Simple usage looks like:
+  ![sdk resource structure](https://user-images.githubusercontent.com/864790/34393059-9acad058-eb2e-11e7-9987-494eaf19d109.png)
+  
+  **Sample**
   
 ```php
   <?php
-    require_once 'vendor/autoload.php'; // You have to require the library from your Composer vendor folder
+  
+    require __DIR__  . '/vendor/autoload.php';
 
-    MercadoPago\SDK::setAccessToken("YOUR_ACCESS_TOKEN"); // Either Production or SandBox AccessToken
+    MercadoPago\SDK::setAccessToken("YOUR_ACCESS_TOKEN");
 
     $payment = new MercadoPago\Payment();
-    
+
     $payment->transaction_amount = 141;
     $payment->token = "YOUR_CARD_TOKEN";
     $payment->description = "Ergonomic Silk Shirt";
     $payment->installments = 1;
     $payment->payment_method_id = "visa";
     $payment->payer = array(
-      "email" => "larue.nienow@email.com"
+      "email" => "larue.nienow@hotmail.com"
     );
-
-    $payment->save();
-
+ 
     echo $payment->status;
+    
   ?>
 ```
+  
+### Support 
 
-## 📚 Documentation 
-
-Visit our Dev Site for further information regarding:
- - Payments APIs: [Spanish](https://www.mercadopago.com.ar/developers/es/guides/payments/api/introduction/) / [Portuguese](https://www.mercadopago.com.br/developers/pt/guides/payments/api/introduction/)
- - Mercado Pago checkout: [Spanish](https://www.mercadopago.com.ar/developers/es/guides/payments/web-payment-checkout/introduction/) / [Portuguese](https://www.mercadopago.com.br/developers/pt/guides/payments/web-payment-checkout/introduction/)
- - Web Tokenize checkout: [Spanish](https://www.mercadopago.com.ar/developers/es/guides/payments/web-tokenize-checkout/introduction/) / [Portuguese](https://www.mercadopago.com.br/developers/pt/guides/payments/web-tokenize-checkout/introduction/)
-
-Check [our official code reference](https://www.mercadopago.com.br/developers/pt/docs/sdks-library/server-side) to explore all available functionalities.
-
-## ❤️ Support 
-
-If you require technical support, please contact our support team at [developers.mercadopago.com](https://developers.mercadopago.com)
-
-## 🏻 License 
-
-```
-MIT license. Copyright (c) 2018 - Mercado Pago / Mercado Libre 
-For more information, see the LICENSE file.
-```
+Write us at [developers.mercadopago.com](https://developers.mercadopago.com)

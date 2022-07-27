@@ -1,27 +1,21 @@
 <?php
-/**
- * Tax class file
- */
 namespace MercadoPago;
 
 use MercadoPago\Annotation\Attribute;
 
 /**
- * Tax class
+ * Payer Class Doc Comment
+ *
+ * @package MercadoPago
  */
 class Tax extends Entity
 {
     /**
-     * type
      * @Attribute(type = "string")
-     * @var string
      */
     protected $type;
-
     /**
-     * value
      * @Attribute(type = "float")
-     * @var float
      */
     protected $value;
 }
