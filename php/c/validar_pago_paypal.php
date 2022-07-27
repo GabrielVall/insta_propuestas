@@ -9,7 +9,7 @@ $select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
 // Urls de la Api de Paypal
 $sandbox = 'https://api-m.sandbox.paypal.com/'; // Api Sandbox URL
 $live = 'https://api.paypal.com/'; // Api Live URL
-$paypal_url = $sandbox;
+$paypal_url = $live;
 
 
 // Obtener el access token de PayPal
