@@ -106,8 +106,9 @@ function function_api_altan_1($url, $method, $authorization, $data=''){
   $offerid=$sql->obtenerResultado("SELECT fn_select_offerid('".$id_oferta."')");
   $msisdn=$sql->obtenerResultado("SELECT fn_select_msisdn('".$id_linea."')");
   // ACTIVACIÓN DE SIMCARD EN LA API
-  $data_json = array("msisdn"=>'8781540709', "offerings"=>['1879901144']);
-  $rpta_activacion=function_api_altan_1('https://altanredes-prod.apigee.net/cm/v1/products/purchase','POST','Bearer '. $token["accessToken"],json_encode($data_json));
+  $data_json = array("msisdn"=>$msisdn[0][0], "offerings"=>[$offerid[0][0]]);
+  var_dump($data_json);
+//   $rpta_activacion=function_api_altan_1('https://altanredes-prod.apigee.net/cm/v1/products/purchase','POST','Bearer '. $token["accessToken"],json_encode($data_json));
   if (array_key_exists('effectiveDate', $rpta_activacion)){
     // Retornamos el estado del pago
     return json_encode(
