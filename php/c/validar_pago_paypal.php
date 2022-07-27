@@ -68,12 +68,7 @@ if($result['status'] == 'COMPLETED'){
   // Sleccionamos la linea telefonica por el ID de la SIM
   $id_linea = $sql->obtenerResultado("SELECT fn_select_linea_telefonica('".$SIM."')");
   $pagar = $sql->obtenerResultadoSimple("CALL sp_insert_contratos_lineas_telefonicas1('".$id_linea[0][0]."',2,'".$_GET['offerid']."')");
-  // echo terminar_pago_api($_GET['offerid'],$id_linea[0][0]);
-  echo json_encode(
-    array(
-        'status' => 'success',
-    )
-  );
+  echo terminar_pago_api($_GET['offerid'],$id_linea[0][0]);
 }else{
   echo json_encode(
       array(
