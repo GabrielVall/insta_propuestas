@@ -26,7 +26,7 @@ if($validar){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Instacel</title>
-    <link rel="stylesheet" href="css/estilo.css?v=">
+    <link rel="stylesheet" href="css/estilo.css?v=1">
     <link rel="stylesheet" href="css/responsive.css">
     <script src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypal_clientID; ?>&currency=MXN"></script>
   </head>

@@ -186,3 +186,8 @@
         bottom: -31%;
     }
 }
+@media only screen and (max-heigth: 400px) {
+    .text_card,.choose_payment{
+        display: none;
+    }
+}
