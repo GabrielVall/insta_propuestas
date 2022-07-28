@@ -75,7 +75,7 @@ if($result['status'] == 'COMPLETED'){
   
   // Sleccionamos la linea telefonica por el ID de la SIM
   $id_linea = $sql->obtenerResultado("SELECT fn_select_linea_telefonica('".$SIM."')");
-  $pagar = $sql->obtenerResultadoID("CALL sp_insert_contratos_lineas_telefonicas2('".$id_linea[0][0]."',4,'".$_SESSION['offer_id']."',@_ID)");
+  $pagar = $sql->obtenerResultadoID("CALL sp_insert_contratos_lineas_telefonicas2('".$id_linea[0][0]."',4,'".$_GET['offerid']."',@_ID)");
   $id_pago = $pagar[0][0];
   $validar = $sql->obtenerResultadoSimple("CALL sp_insertar_id_rastreo({$id_pago},{$_POST['payment_id']})");
   if($validar){
