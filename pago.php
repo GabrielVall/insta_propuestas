@@ -236,7 +236,7 @@ if($validar){
       </div>
   </body>
   <script src="js/jquery.js"></script>
-  <script src="js/main.js?v1.02"></script>
+  <script src="js/main.js?v1.03"></script>
   <script src="https://js.openpay.mx/openpay.v1.min.js" id="script_openpay" data-id="<?php echo $OpenPay_ID; ?>" data-key="<?php echo $openpay_key; ?>"></script>
   <script src="https://js.openpay.mx/openpay-data.v1.min.js"></script>
 </html>
