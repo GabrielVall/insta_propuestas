@@ -192,7 +192,27 @@ $(document).ready(function() {
                     </div>
                 </div> 
                 `);
-            }else{
+            }else if(res.status == 'pagado'){
+                $('.backdrop_modal').addClass('visible');
+                $('.top_modal').html('<img src="img/success.gif">');
+                $('.modal_content').html('Este pago ya fue realizado anteriormente.');
+                setTimeout(function(){
+                    $('.backdrop_modal').removeClass('visible');
+                    $('.backdrop_modal').html(`
+                    <div class="success_alert">
+                        <img src="img/success.gif">
+                        <div class="text_success">
+                            <h3>Pago realizado anteriormente</h3>
+                            <p>Este pago ya fue realizado</p>
+                            <button class="button_hov" id="back_button">
+                                <span>Volver a la pagina</span>
+                            </button>
+                        </div>
+                    </div>
+                    `);
+                },5000);
+            }
+            else{
                 $('.backdrop_modal').addClass('visible');
                 $('.top_modal').html('<img src="img/error.png">');
                 $('.modal_content').html('Error, intenta más tarde');
