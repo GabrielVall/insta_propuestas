@@ -17,7 +17,7 @@ if($validar_rastreo[0][0] > 0){
 // Urls de la Api de Paypal
 $sandbox = 'https://api-m.sandbox.paypal.com/'; // Api Sandbox URL
 $live = 'https://api.paypal.com/'; // Api Live URL
-$paypal_url = $live;
+$paypal_url = $sandbox;
 
 
 // Obtener el access token de PayPal
