@@ -5,6 +5,14 @@ $sql = new SQLConexion();
 // Obtener la Secret Key de MercadoPago
 $select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
 $secret_mp = $select_keys[3]['valor_configuracion'];
+$validar_rastreo = $sql->obtenerResultado("CALL sp_select_rastreo({$_GET['id_rastreo']})");
+if($validar_rastreo[0][0] > 0){
+  echo '<script>
+  alert("Tu pago ya fue procesado");
+  window.location.href = "https://instacel.mx/";
+  </script>';
+  exit(); 
+}
 
 $ACCESS_TOKEN = $secret_mp; //aqui cargamos el token
 $curl = curl_init(); //iniciamos la funcion curl
@@ -39,7 +47,9 @@ if ($status == 'approved') {
   
   // Sleccionamos la linea telefonica por el ID de la SIM
   $id_linea = $sql->obtenerResultado("SELECT fn_select_linea_telefonica('".$SIM."')");
-  $pagar = $sql->obtenerResultadoSimple("CALL sp_insert_contratos_lineas_telefonicas1('".$id_linea[0][0]."',4,'".$_SESSION['offer_id']."')");
+  $pagar = $sql->obtenerResultadoID("CALL sp_insert_contratos_lineas_telefonicas2('".$id_linea[0][0]."',4,'".$_SESSION['offer_id']."')");
+  $id_pago = $pagar[0][0];
+  $validar = $sql->obtenerResultadoSimple("CALL sp_insertar_id_rastreo({$id_pago})");
   echo terminar_pago_api($_SESSION['offer_id'],$id_linea[0][0]);
 }else{
   echo json_encode(
