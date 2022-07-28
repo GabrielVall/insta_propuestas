@@ -5,6 +5,7 @@ $sql = new SQLConexion();
 // Obtener la Secret Key de MercadoPago
 $select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
 $secret_mp = $select_keys[3]['valor_configuracion'];
+echo "CALL sp_select_rastreo({$_POST['payment_id']})";
 $validar_rastreo = $sql->obtenerResultado("CALL sp_select_rastreo({$_POST['payment_id']})");
 if($validar_rastreo[0][0] > 0){
   echo '<script>
