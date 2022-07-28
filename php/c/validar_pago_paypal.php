@@ -5,7 +5,7 @@ session_start();
 include_once("funciones.php");
 $sql = new SQLConexion();
 $select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
-$validar_rastreo = $sql->obtenerResultado("CALL sp_select_rastreo({$_GET['paypal_orderid']})");
+$validar_rastreo = $sql->obtenerResultado("CALL sp_select_rastreo('".$_GET['paypal_orderid']."')");
 if($validar_rastreo[0][0] > 0){
   echo json_encode(
     array(
