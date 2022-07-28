@@ -48,6 +48,7 @@ if ($status == 'approved') {
   $id_linea = $sql->obtenerResultado("SELECT fn_select_linea_telefonica('".$SIM."')");
   $pagar = $sql->obtenerResultadoID("CALL sp_insert_contratos_lineas_telefonicas2('".$id_linea[0][0]."',4,'".$_SESSION['offer_id']."',@_ID)");
   $id_pago = $pagar[0][0];
+  echo "CALL sp_insertar_id_rastreo({$id_pago})"; exit;
   $validar = $sql->obtenerResultadoSimple("CALL sp_insertar_id_rastreo({$id_pago})");
   if($validar){
     echo terminar_pago_api($_SESSION['offer_id'],$id_linea[0][0]);
