@@ -5,7 +5,15 @@ session_start();
 include_once("funciones.php");
 $sql = new SQLConexion();
 $select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
-
+$validar_rastreo = $sql->obtenerResultado("CALL sp_select_rastreo({$_GET['paypal_orderid']})");
+if($validar_rastreo[0][0] > 0){
+  echo json_encode(
+    array(
+        'status' => 'pagado',
+    )
+  );
+  exit;
+}
 // Urls de la Api de Paypal
 $sandbox = 'https://api-m.sandbox.paypal.com/'; // Api Sandbox URL
 $live = 'https://api.paypal.com/'; // Api Live URL
@@ -67,8 +75,12 @@ if($result['status'] == 'COMPLETED'){
   
   // Sleccionamos la linea telefonica por el ID de la SIM
   $id_linea = $sql->obtenerResultado("SELECT fn_select_linea_telefonica('".$SIM."')");
-  $pagar = $sql->obtenerResultadoSimple("CALL sp_insert_contratos_lineas_telefonicas1('".$id_linea[0][0]."',2,'".$_GET['offerid']."')");
-  echo terminar_pago_api($_GET['offerid'],$id_linea[0][0]);
+  $pagar = $sql->obtenerResultadoID("CALL sp_insert_contratos_lineas_telefonicas2('".$id_linea[0][0]."',4,'".$_SESSION['offer_id']."',@_ID)");
+  $id_pago = $pagar[0][0];
+  $validar = $sql->obtenerResultadoSimple("CALL sp_insertar_id_rastreo({$id_pago},{$_POST['payment_id']})");
+  if($validar){
+    echo terminar_pago_api($_SESSION['offer_id'],$id_linea[0][0]);
+  }
 }else{
   echo json_encode(
       array(
