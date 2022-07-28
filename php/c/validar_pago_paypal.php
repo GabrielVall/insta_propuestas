@@ -77,7 +77,7 @@ if($result['status'] == 'COMPLETED'){
   $id_linea = $sql->obtenerResultado("SELECT fn_select_linea_telefonica('".$SIM."')");
   $pagar = $sql->obtenerResultadoID("CALL sp_insert_contratos_lineas_telefonicas2('".$id_linea[0][0]."',4,'".$_GET['offerid']."',@_ID)");
   $id_pago = $pagar[0][0];
-  $validar = $sql->obtenerResultadoSimple("CALL sp_insertar_id_rastreo({$id_pago},{$_POST['payment_id']})");
+  $validar = $sql->obtenerResultadoSimple("CALL sp_insertar_id_rastreo({$id_pago},{$_GET['paypal_orderid']})");
   if($validar){
     echo terminar_pago_api($_SESSION['offer_id'],$id_linea[0][0]);
   }
