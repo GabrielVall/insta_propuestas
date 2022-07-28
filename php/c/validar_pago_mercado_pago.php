@@ -13,7 +13,8 @@ if($validar_rastreo[0][0] > 0){
   </script>';
   exit(); 
 }
-
+echo "CALL sp_select_rastreo({$_POST['payment_id']})";
+exit();
 $ACCESS_TOKEN = $secret_mp; //aqui cargamos el token
 $curl = curl_init(); //iniciamos la funcion curl
 
