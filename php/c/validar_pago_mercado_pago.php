@@ -5,7 +5,6 @@ $sql = new SQLConexion();
 // Obtener la Secret Key de MercadoPago
 $select_keys = $sql->obtenerResultado("CALL sp_select_keys()");
 $secret_mp = $select_keys[3]['valor_configuracion'];
-exit;
 $validar_rastreo = $sql->obtenerResultado("CALL sp_select_rastreo({$_POST['payment_id']})");
 if($validar_rastreo[0][0] > 0){
   echo json_encode(
@@ -13,8 +12,8 @@ if($validar_rastreo[0][0] > 0){
         'status' => 'pagado',
     )
   );
+  exit;
 }
-exit;
 $ACCESS_TOKEN = $secret_mp; //aqui cargamos el token
 $curl = curl_init(); //iniciamos la funcion curl
 
