@@ -51,7 +51,9 @@ $(document).ready(function() {
                         var offerid = window.location.search.split('=')[1];
                         window.location.href = 'pago.php?cel=' + cel + '&offerid=' + offerid;
                     }else{
-                        alert('El número ingresado no fue encontrado, intente de nuevo');
+                        alertify.alert('¡ALERTA!', 'El número ingresado no fue encontrado, intente de nuevo').setting({
+                            'label':'Aceptar'
+                        });
                     }
                 },
                 complete: function() {
@@ -65,7 +67,9 @@ $(document).ready(function() {
             button_next.innerHTML = 'SIGUIENTE';
         }
     }else{
-        alert('Los números no coinciden, intente de nuevo');
+        alertify.alert('¡ALERTA!', 'Los números ingresados no coinciden.').setting({
+            'label':'Aceptar'
+        });
     }
     });
     
