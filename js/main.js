@@ -26,13 +26,15 @@ $(document).ready(function() {
     // on click
     $(document).on('click', '#btn_next', function(e) {
         var cel = document.getElementById('celular').value;
-        var cbx = document.getElementById('cbx');
-        button_next.innerHTML = '<div class="loader"></div>';
-        button_next.classList.add('disabled');
-        $('.backdrop_modal').addClass('visible');
+        var cel2 = document.getElementById('celular2').value;
+        
+        if (cel.length == 10 && cel2.length == 10 && cel == cel2) {
         // if cel is valid
         if (cel.length == 10) {
-
+            var cbx = document.getElementById('cbx');
+            button_next.innerHTML = '<div class="loader"></div>';
+            button_next.classList.add('disabled');
+            $('.backdrop_modal').addClass('visible');
             $.ajax({
                 url: 'php/c/validar_numero.php',
                 type: 'POST',
@@ -62,6 +64,9 @@ $(document).ready(function() {
             button_next.classList.remove('disabled');
             button_next.innerHTML = 'SIGUIENTE';
         }
+    }else{
+        alert('Los números no coinciden, intente de nuevo');
+    }
     });
     
     $(document).on('keyup', '#numero_tarjeta', function(e) {
