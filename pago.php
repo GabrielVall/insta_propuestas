@@ -16,7 +16,6 @@ $paypal = $metodos_activos[1]['estado_metodo_pago'];
 $stripe = $metodos_activos[2]['estado_metodo_pago'];
 $mercado = $metodos_activos[3]['estado_metodo_pago'];
 $openpay = $metodos_activos[4]['estado_metodo_pago'];
-echo $paypal.'/'.$stripe.'/'.$mercado.'/'.$openpay;
 if($validar){
   // echo "Oferta validada";
 }else{
@@ -66,20 +65,25 @@ if($validar){
                   <h4>Selecciona un metodo de pago</h4>
                 </div>
                 <div class="squares">
-                  <div class="square selected" data-id="1">
+                <?php if($openpay == 1){ ?>
+                  <div class="square" data-id="1">
                     <div class="icon">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                         <path d="M512 32C547.3 32 576 60.65 576 96V128H0V96C0 60.65 28.65 32 64 32H512zM576 416C576 451.3 547.3 480 512 480H64C28.65 480 0 451.3 0 416V224H576V416zM112 352C103.2 352 96 359.2 96 368C96 376.8 103.2 384 112 384H176C184.8 384 192 376.8 192 368C192 359.2 184.8 352 176 352H112zM240 384H368C376.8 384 384 376.8 384 368C384 359.2 376.8 352 368 352H240C231.2 352 224 359.2 224 368C224 376.8 231.2 384 240 384z" />
                       </svg>
                     </div>
                   </div>
-                  <div class="square" data-id="2">
+                  <?php } ?>
+                  <?php if($paypal == 1){ ?>
+                  <div class="square selected" data-id="2">
                     <div class="icon">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                         <path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z" />
                       </svg>
                     </div>
                   </div>
+                  <?php } ?>
+                  <?php if($stripe == 1){ ?>
                   <div class="square" data-id="3">
                     <div class="icon stripe-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
@@ -87,11 +91,14 @@ if($validar){
                       </svg>
                     </div>
                   </div>
+                  <?php } ?>
+                  <?php if($mercado == 1){ ?>
                   <div class="square" data-id="4">
                     <div class="icon">
                       <img src="img/mercado_pago.png">
                     </div>
                   </div>
+                  <?php } ?>
                 </div>
               </div>
               <span class="method show" data-id="1">
