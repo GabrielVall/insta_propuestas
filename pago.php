@@ -16,6 +16,7 @@ $paypal = $metodos_activos[1]['estado_metodo_pago'];
 $stripe = $metodos_activos[2]['estado_metodo_pago'];
 $mercado = $metodos_activos[3]['estado_metodo_pago'];
 $openpay = $metodos_activos[4]['estado_metodo_pago'];
+echo $paypal.'/'.$stripe.'/'.$mercado.'/'.$openpay;
 if($validar){
   // echo "Oferta validada";
 }else{
@@ -65,7 +66,6 @@ if($validar){
                   <h4>Selecciona un metodo de pago</h4>
                 </div>
                 <div class="squares">
-                <?php if($openpay == 1){ ?>
                   <div class="square selected" data-id="1">
                     <div class="icon">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -73,8 +73,6 @@ if($validar){
                       </svg>
                     </div>
                   </div>
-                  <?php } ?>
-                  <?php if($paypal == 1){ ?>
                   <div class="square" data-id="2">
                     <div class="icon">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -82,8 +80,6 @@ if($validar){
                       </svg>
                     </div>
                   </div>
-                  <?php } ?>
-                  <?php if($stripe == 1){ ?>
                   <div class="square" data-id="3">
                     <div class="icon stripe-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
@@ -91,14 +87,11 @@ if($validar){
                       </svg>
                     </div>
                   </div>
-                  <?php } ?>
-                  <?php if($mercado == 1){ ?>
                   <div class="square" data-id="4">
                     <div class="icon">
                       <img src="img/mercado_pago.png">
                     </div>
                   </div>
-                  <?php } ?>
                 </div>
               </div>
               <span class="method show" data-id="1">
