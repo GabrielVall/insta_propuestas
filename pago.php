@@ -101,7 +101,7 @@ if($validar){
                   <?php } ?>
                 </div>
               </div>
-              <span class="method show" data-id="1">
+              <span class="method" data-id="1">
                 <div class="credit_card_container">
                   <div class="credit_card">
                     <div class="credit_header">
@@ -217,7 +217,7 @@ if($validar){
                   </div>
                 </div>
               </span>
-              <span class="method" data-id="2">
+              <span class="method show" data-id="2">
                 <div class="paypal_btn">
                   <a id="paypal"></a>
                 </div>
